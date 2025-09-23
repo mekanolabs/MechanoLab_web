@@ -134,3 +134,10 @@
   color: white;
   transform: translate(-50%, -50%) scale(1.1);
 }
+
+
+.ltr-text {
+  direction: ltr;          /* English reads left-to-right */
+  unicode-bidi: embed;     /* properly embedded in RTL text */
+  font-weight: bold;       /* optional styling */
+}

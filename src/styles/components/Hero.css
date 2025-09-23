@@ -132,3 +132,18 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   z-index: 2; /* Ensure content is above the overlay */
 }
+
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.hero-subtitle-line {
+  display: block; /* ensures it appears under Mekano Labs */
+  font-size: 2rem;
+  font-weight: normal;
+  color: #fd4800; /* optional: golden/yellow for emphasis */
+  margin-top: 0.5rem;
+}

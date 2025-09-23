@@ -5,6 +5,7 @@ import TextImageSection from '../components/TextImageSection';
 import ImageSlider from '../components/ImageSlider';
 import Footer from '../components/Footer';
 import About from '../components/About';
+import TextonomialSection from '../components/TextonomialSection';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Hero />
       <TextImageSection reverse={false} isVideo={true} />
       <ImageSlider />
+      <TextonomialSection />
       <About />
       <Footer />
     </div>
