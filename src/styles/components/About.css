@@ -1,0 +1,136 @@
+/* About Section */
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem;
+}
+
+/* Video (left side) */
+.about-media {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-video {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Text (right side) */
+.about-text {
+  flex: 1;
+  max-width: 500px;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  color: #1F2937;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  color: #6B7280;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.about-button {
+  padding: 1.25rem 2rem;
+  background-color: #4F46E5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-button:hover {
+  background-color: #3730A3;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.about-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .about-text {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.8rem;
+  }
+}
+
+
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.about-video {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Play button overlay */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 2rem;
+  color: #4F46E5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.play-button:hover {
+  background: #4F46E5;
+  color: white;
+  transform: translate(-50%, -50%) scale(1.1);
+}

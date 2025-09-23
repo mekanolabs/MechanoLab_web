@@ -1,0 +1,129 @@
+/* TextImageSection */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem;
+}
+
+.text-container {
+  flex: 1;
+  max-width: 500px;
+}
+
+.media-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #1F2937;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  color: #6B7280;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.section-button {
+  width: 100%; 
+  padding: 1.25rem 2rem; 
+  background-color: #4F46E5;
+  color: white;
+  border: none;
+  border-radius: 10px; 
+  font-size: 1.3rem; 
+  font-weight: 600; 
+  cursor: pointer;
+  transition: all 0.3s ease; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px; 
+}
+
+.section-button:hover {
+  background-color: #3730A3;
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); 
+}
+
+.section-button:active {
+  transform: translateY(0); 
+}
+
+/* Media (image/video common style) */
+.media {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Responsive TextImageSection */
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column !important;
+    text-align: center;
+    padding: 2rem 1rem !important;
+  }
+  
+  .text-container {
+    max-width: 100% !important;
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+}
+
+/* Video wrapper with overlay button */
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Play button overlay */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 2rem;
+  color: #4F46E5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.play-button:hover {
+  background: #4F46E5;
+  color: white;
+  transform: translate(-50%, -50%) scale(1.1);
+}
