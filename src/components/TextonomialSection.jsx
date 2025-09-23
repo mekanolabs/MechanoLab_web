@@ -34,9 +34,9 @@ const TextonomialSection = () => {
               loop
               playsInline
               controls={isPlaying}
-              poster="/images/poster.png"
+              poster="/images/poster2.png"
             >
-              <source src="/videos/video1.mp4" type="video/mp4" />
+              <source src="/videos/video3.mp4" type="video/mp4" />
               متصفحك لا يدعم تشغيل الفيديو.
             </video>
 

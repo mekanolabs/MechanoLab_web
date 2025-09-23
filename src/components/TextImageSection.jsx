@@ -27,9 +27,9 @@ const TextImageSection = ({ reverse = false, isVideo = false }) => {
             التعليم مش مجرد كتب ودروس، لكنه رحلة ممتعة مليانة اكتشاف وإبداع.
             هنا كل طفل بيلاقي الدعم والتشجيع علشان يعبّر عن نفسه بطريقته الخاصة ويصنع مستقبله بخطوات واثقة.
           </p>
-          <button className="section-button" onClick={() => setIsModalOpen(true)}>
+          {/* <button className="section-button" onClick={() => setIsModalOpen(true)}>
             انضم الينا
-          </button>
+          </button> */}
         </div>
         
         <div className="media-container">
