@@ -56,7 +56,7 @@ const ImageSlider = () => {
 
   return (
     <section className="slider-section">
-      <h2 className="slider-title">فعاليات مياكنو لاب</h2>
+      <h2 className="slider-title">فعاليات | Mekano Labs </h2>
       <div className="slider-container">
         <div className="slide-container">
           <img 
