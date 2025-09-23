@@ -36,7 +36,7 @@ const TextImageSection = ({ reverse = false, isVideo = false }) => {
               loop
               playsInline
               controls={isPlaying}   // controls تظهر بس بعد التشغيل
-              poster="/videos/poster.png"
+              poster="/images/poster.png"
             >
               <source src="/videos/video1.mp4" type="video/mp4" />
               متصفحك لا يدعم تشغيل الفيديو.

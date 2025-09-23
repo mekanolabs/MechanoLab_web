@@ -5,29 +5,42 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const ImageSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   const slides = [
-    '/images/1.jpeg',
-    '/images/2.jpeg',
-    '/images/3.jpeg',
+    '/images/1.png',
+    '/images/2.png',
+    '/images/3.png',
+    '/images/4.png',
+    '/images/5.png',
+    '/images/6.png',
+    '/images/7.png',
+    '/images/8.png',
+    '/images/9.png',
+    '/images/10.png',
+    '/images/11.png',
+    '/images/12.png',
+    '/images/13.png',
+    '/images/14.png',
+    '/images/15.png',
+    '/images/16.png',
   ];
 
   const nextSlide = () => {
     if (isAnimating) return;
-    
+
     setIsAnimating(true);
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    
+
     // Reset animation state after transition
     setTimeout(() => setIsAnimating(false), 500);
   };
 
   const prevSlide = () => {
     if (isAnimating) return;
-    
+
     setIsAnimating(true);
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-    
+
     // Reset animation state after transition
     setTimeout(() => setIsAnimating(false), 500);
   };
@@ -59,26 +72,26 @@ const ImageSlider = () => {
       <h2 className="slider-title">فعاليات | Mekano Labs </h2>
       <div className="slider-container">
         <div className="slide-container">
-          <img 
-            src={slides[currentSlide]} 
-            alt={`Slide ${currentSlide + 1}`} 
+          <img
+            src={slides[currentSlide]}
+            alt={`Slide ${currentSlide + 1}`}
             className="slide-image"
             style={{
               animation: isAnimating ? 'slideIn 0.5s ease-in-out' : 'none'
             }}
           />
-          
+
           {/* Navigation arrows inside the image container */}
           <button className="arrow-button prev" onClick={prevSlide}>
             <FaChevronLeft className="arrow-icon" />
           </button>
-          
+
           <button className="arrow-button next" onClick={nextSlide}>
             <FaChevronRight className="arrow-icon" />
           </button>
         </div>
       </div>
-      
+
       <div className="dots-container">
         {slides.map((_, index) => (
           <button
