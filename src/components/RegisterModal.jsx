@@ -3,6 +3,20 @@ import React, { useState } from 'react';
 import '../styles/components/RegisterModal.css';
 
 const RegisterModal = ({ isOpen, onClose }) => {
+  // Remove "مركز" from options except for مدينة المنيا الجديدة
+  const allowedDistricts = [
+    "العدوة",
+    "مغاغة",
+    "بني مزار",
+    "مطاي",
+    "سمالوط",
+    "أبو قرقاص",
+    "ملوي",
+    "ديرمواس",
+    "مدينة المنيا الجديدة",
+    "مدينة المنيا"
+  ];
+
   const [formData, setFormData] = useState({
     name: '',
     district: '',
@@ -26,7 +40,13 @@ const RegisterModal = ({ isOpen, onClose }) => {
     const newErrors = {};
 
     if (!formData.name) newErrors.name = 'الاسم مطلوب';
-    if (!formData.district) newErrors.district = 'اختر المنطقة';
+
+    if (!formData.district) {
+      newErrors.district = 'اختر المركز';
+    } else if (!allowedDistricts.includes(formData.district)) {
+      newErrors.district = 'المركز غير صالح';
+    }
+
     if (!formData.school) newErrors.school = 'اسم المدرسة مطلوب';
 
     if (!formData.age) {
@@ -43,7 +63,6 @@ const RegisterModal = ({ isOpen, onClose }) => {
     if (!formData.phone) {
       newErrors.phone = 'رقم الهاتف مطلوب';
     } else {
-      // Simple phone validation (adjust regex for your requirements)
       const phonePattern = /^[0-9]{7,15}$/;
       if (!phonePattern.test(formData.phone)) {
         newErrors.phone = 'رقم الهاتف غير صالح';
@@ -63,14 +82,13 @@ const RegisterModal = ({ isOpen, onClose }) => {
       return;
     }
 
-    // Map your formData to Google Form entry IDs
     const formDataToSend = new FormData();
-    formDataToSend.append("entry.241952885", formData.name);       // الاسم
-    formDataToSend.append("entry.138042089", formData.district);   // المنطقة
-    formDataToSend.append("entry.1496020668", formData.school);    // اسم المدرسة
-    formDataToSend.append("entry.1241044717", formData.age);       // العمر
-    formDataToSend.append("entry.1798091748", formData.phone);     // رقم الهاتف
-    formDataToSend.append("entry.1996538401", formData.gender);    // النوع
+    formDataToSend.append("entry.241952885", formData.name);
+    formDataToSend.append("entry.138042089", formData.district);
+    formDataToSend.append("entry.1496020668", formData.school);
+    formDataToSend.append("entry.1241044717", formData.age);
+    formDataToSend.append("entry.1798091748", formData.phone);
+    formDataToSend.append("entry.1996538401", formData.gender);
 
     fetch(
       "https://docs.google.com/forms/d/e/1FAIpQLScZaDx6TIBNIiReZ2VFECIBddMEPzxHIGPBW8i0AQ9hPaQ8Fg/formResponse",
@@ -82,7 +100,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
     )
       .then(() => {
         alert("تم الإرسال بنجاح!");
-        onClose(); // close modal
+        onClose();
         setFormData({
           name: '',
           district: '',
@@ -90,7 +108,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           age: '',
           phone: '',
           gender: '',
-        }); // clear form
+        });
       })
       .catch((err) => alert("حدث خطأ: " + err));
   };
@@ -116,22 +134,12 @@ const RegisterModal = ({ isOpen, onClose }) => {
           </label>
 
           <label>
-            المنطقة:
+            المركز:
             <select name="district" value={formData.district} onChange={handleChange}>
-              <option value="">اختر المنطقة</option>
-              <option value="مغاغة">مغاغة</option>
-              <option value="سمالوط شرق">سمالوط شرق</option>
-              <option value="سمالوط غرب">سمالوط غرب</option>
-              <option value="ملوي">ملوي</option>
-              <option value="قسم أول المنيا">قسم أول المنيا</option>
-              <option value="قسم ثان المنيا">قسم ثان المنيا</option>
-              <option value="قسم ثالث المنيا">قسم ثالث المنيا</option>
-              <option value="المنيا الجديدة">المنيا الجديدة</option>
-              <option value="أبو قرقاص">أبو قرقاص</option>
-              <option value="بني مزار">بني مزار</option>
-              <option value="ديروط">ديروط</option>
-              <option value="العُدوة">العُدوة</option>
-              <option value="مطاي">مطاي</option>
+              <option value="">اختر المركز</option>
+              {allowedDistricts.map((district) => (
+                <option key={district} value={district}>{district}</option>
+              ))}
             </select>
             {errors.district && <div className="error">{errors.district}</div>}
           </label>
