@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import '../styles/components/RegisterModal.css';
 
 const RegisterModal = ({ isOpen, onClose }) => {
-  // Remove "مركز" from options except for مدينة المنيا الجديدة
   const allowedDistricts = [
     "العدوة",
     "مغاغة",
@@ -63,9 +62,9 @@ const RegisterModal = ({ isOpen, onClose }) => {
     if (!formData.phone) {
       newErrors.phone = 'رقم الهاتف مطلوب';
     } else {
-      const phonePattern = /^[0-9]{7,15}$/;
+      const phonePattern = /^[0-9]{11}$/;
       if (!phonePattern.test(formData.phone)) {
-        newErrors.phone = 'رقم الهاتف غير صالح';
+        newErrors.phone = 'رقم الهاتف يجب أن يكون 11 رقمًا';
       }
     }
 
@@ -82,6 +81,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
       return;
     }
 
+    // Prepare form data to send to Google Form
     const formDataToSend = new FormData();
     formDataToSend.append("entry.241952885", formData.name);
     formDataToSend.append("entry.138042089", formData.district);
