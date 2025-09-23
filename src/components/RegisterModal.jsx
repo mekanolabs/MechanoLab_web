@@ -24,12 +24,34 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
   const validate = () => {
     const newErrors = {};
+
     if (!formData.name) newErrors.name = 'الاسم مطلوب';
     if (!formData.district) newErrors.district = 'اختر المنطقة';
     if (!formData.school) newErrors.school = 'اسم المدرسة مطلوب';
-    if (!formData.age) newErrors.age = 'العمر مطلوب';
-    if (!formData.phone) newErrors.phone = 'رقم الهاتف مطلوب';
+
+    if (!formData.age) {
+      newErrors.age = 'العمر مطلوب';
+    } else {
+      const ageNum = Number(formData.age);
+      if (isNaN(ageNum)) {
+        newErrors.age = 'العمر يجب أن يكون رقم';
+      } else if (ageNum < 1 || ageNum > 99) {
+        newErrors.age = 'العمر يجب أن يكون بين 1 و 99';
+      }
+    }
+
+    if (!formData.phone) {
+      newErrors.phone = 'رقم الهاتف مطلوب';
+    } else {
+      // Simple phone validation (adjust regex for your requirements)
+      const phonePattern = /^[0-9]{7,15}$/;
+      if (!phonePattern.test(formData.phone)) {
+        newErrors.phone = 'رقم الهاتف غير صالح';
+      }
+    }
+
     if (!formData.gender) newErrors.gender = 'اختر النوع';
+
     return newErrors;
   };
 
@@ -50,12 +72,14 @@ const RegisterModal = ({ isOpen, onClose }) => {
     formDataToSend.append("entry.1798091748", formData.phone);     // رقم الهاتف
     formDataToSend.append("entry.1996538401", formData.gender);    // النوع
 
-    // Google Form POST endpoint
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLScZaDx6TIBNIiReZ2VFECIBddMEPzxHIGPBW8i0AQ9hPaQ8Fg/formResponse", {
-      method: "POST",
-      mode: "no-cors",
-      body: formDataToSend
-    })
+    fetch(
+      "https://docs.google.com/forms/d/e/1FAIpQLScZaDx6TIBNIiReZ2VFECIBddMEPzxHIGPBW8i0AQ9hPaQ8Fg/formResponse",
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: formDataToSend,
+      }
+    )
       .then(() => {
         alert("تم الإرسال بنجاح!");
         onClose(); // close modal
