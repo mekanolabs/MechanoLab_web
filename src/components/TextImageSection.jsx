@@ -27,9 +27,9 @@ const TextImageSection = ({ reverse = false, isVideo = false }) => {
             التعليم مش مجرد كتب ودروس، لكنه رحلة ممتعة مليانة اكتشاف وإبداع.
             هنا كل طفل بيلاقي الدعم والتشجيع علشان يعبّر عن نفسه بطريقته الخاصة ويصنع مستقبله بخطوات واثقة.
           </p>
-          {/* <button className="section-button" onClick={() => setIsModalOpen(true)}>
-            انضم الينا
-          </button> */}
+          <button className="section-button" onClick={() => setIsModalOpen(true)}>
+            !جاهز
+          </button>
         </div>
         
         <div className="media-container">
@@ -43,7 +43,7 @@ const TextImageSection = ({ reverse = false, isVideo = false }) => {
                 controls={isPlaying}
                 poster="/images/poster.png"
               >
-                <source src="/videos/video1.mp4" type="video/mp4" />
+                <source src="/videos/intro.mp4" type="video/mp4" />
                 متصفحك لا يدعم تشغيل الفيديو.
               </video>
 

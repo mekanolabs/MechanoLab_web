@@ -122,7 +122,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
         <h2>تسجيل</h2>
         <form className="register-form" onSubmit={handleSubmit}>
           <label>
-            الاسم:
+            الاسم
             <input
               type="text"
               name="name"
@@ -134,7 +134,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           </label>
 
           <label>
-            المركز:
+            المركز
             <select name="district" value={formData.district} onChange={handleChange}>
               <option value="">اختر المركز</option>
               {allowedDistricts.map((district) => (
@@ -145,7 +145,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           </label>
 
           <label>
-            اسم المدرسة:
+            اسم المدرسة
             <input
               type="text"
               name="school"
@@ -157,7 +157,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           </label>
 
           <label>
-            العمر:
+            العمر
             <input
               type="number"
               name="age"
@@ -169,7 +169,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           </label>
 
           <label>
-            رقم الهاتف:
+            رقم الهاتف
             <input
               type="tel"
               name="phone"
@@ -181,7 +181,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
           </label>
 
           <label>
-            النوع:
+            النوع
             <select name="gender" value={formData.gender} onChange={handleChange}>
               <option value="">اختر النوع</option>
               <option value="ذكر">ذكر</option>

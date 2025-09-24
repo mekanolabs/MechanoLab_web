@@ -23,6 +23,9 @@ const ImageSlider = () => {
     '/images/14.png',
     '/images/15.png',
     '/images/16.png',
+    '/images/17.jpeg',
+
+
   ];
 
   const nextSlide = () => {

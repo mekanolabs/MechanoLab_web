@@ -15,12 +15,12 @@ const Hero = () => {
           <span className="hero-subtitle-line">متعة التعلم</span>
         </h1>
         <p className="hero-subtitle">
-          في Mekano Labs بنحوّل التعليم لتجربة ممتعة مليانة فضول، إبداع، ودعم.
+          بنحوّل التعليم لتجربة ممتعة مليانة فضول، إبداع، ودعم.
           كل طفل عنده فرصة يكتشف نفسه ويصنع مستقبله بخطوات واثقة.
         </p>
-        <div className="hero-button-container">
-          {/* <button className="hero-button">ارغب في الاشتراك</button> */}
-        </div>
+        {/* <div className="hero-button-container">
+          <button className="hero-button">ارغب في الاشتراك</button>
+        </div> */}
       </div>
     </section>
   );

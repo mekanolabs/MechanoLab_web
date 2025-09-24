@@ -1,0 +1,75 @@
+.infinite-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 40px 0; /* Increased padding for better spacing */
+}
+
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 60s linear infinite; /* Slightly slower for larger images */
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+.slide {
+  flex: 0 0 auto;
+  position: relative;
+  margin-right: 15px; /* Increased gap for better spacing */
+}
+
+.slide img {
+  height: 500px; /* Increased image height */
+  width: auto; /* Maintain aspect ratio */
+  max-width: 400px; /* Limit maximum width */
+  object-fit: cover;
+  border-radius: 12px;
+  filter: grayscale(30%) brightness(0.8);
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.slide img:hover {
+  filter: grayscale(0%) brightness(1.1);
+  transform: scale(1.05); /* Added slight zoom on hover */
+}
+
+/* Fixed infinite scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 2)); /* Exactly half of total width */
+  }
+}
+
+/* Optional: Add gradient overlays for better visual effect */
+.infinite-slider::before,
+.infinite-slider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.infinite-slider::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.infinite-slider::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}

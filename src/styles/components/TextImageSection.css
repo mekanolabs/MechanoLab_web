@@ -62,11 +62,17 @@
 /* Media (image/video common style) */
 .media {
   width: 100%;
-  max-width: 500px;
-  height: 300px;
-  object-fit: cover;
+  height: auto;       /* keeps aspect ratio */
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Video wrapper */
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;   /* fill container (half the section width) */
 }
 
 /* Responsive TextImageSection */
@@ -91,14 +97,6 @@
   .section-title {
     font-size: 1.8rem !important;
   }
-}
-
-/* Video wrapper with overlay button */
-.video-wrapper {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  max-width: 500px;
 }
 
 /* Play button overlay */
@@ -128,10 +126,9 @@
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-
-
+/* Optional LTR text utility */
 .ltr-text {
-  direction: ltr;          /* ensures English reads left-to-right */
-  unicode-bidi: embed;     /* keeps it properly embedded in RTL text */
-  font-weight: bold;       /* optional styling */
+  direction: ltr;
+  unicode-bidi: embed;
+  font-weight: bold;
 }
