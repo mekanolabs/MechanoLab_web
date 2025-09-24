@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import About from '../components/About';
 import TextonomialSection from '../components/TextonomialSection';
 import ImageSlider2 from '../components/ImageSlider2';
+import PracticalSection from '../components/practicalSection';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <TextImageSection reverse={false} isVideo={true} />
       <ImageSlider />
       <TextonomialSection />
+      <PracticalSection reverse={true} isVideo={true} />
       <ImageSlider2 />
       <About />
       <Footer />
