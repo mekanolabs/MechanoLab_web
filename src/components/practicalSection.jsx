@@ -27,7 +27,7 @@ const PracticalSection = ({ reverse = false, isVideo = false }) => {
             احنا مؤمنين إن التعليم مش بس كلام في الكتب، لكن أهم حاجة إن الطفل
             يتعلم بإيده ويجرب بنفسه. من خلال الأنشطة العملية والورش التفاعلية،
             كل واحد هيلاقي فرصة يكتشف قدراته ويطوّر مهاراته بطريقة سهلة وممتعة
-            تناسب حياته اليومية وتجهزه للمستقبل.
+            تناسب حياته اليومية وتجهزه للمستقبل
           </p>
         </div>
         
@@ -36,7 +36,7 @@ const PracticalSection = ({ reverse = false, isVideo = false }) => {
             <div className="video-wrapper">
               <video
                 ref={videoRef}
-                className="media about-video"
+                className="about-video" 
                 loop
                 playsInline
                 controls={isPlaying}

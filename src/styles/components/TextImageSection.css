@@ -132,3 +132,12 @@
   unicode-bidi: embed;
   font-weight: bold;
 }
+
+
+.about-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* يخلي الفيديو كامل من غير ما يتقص */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}

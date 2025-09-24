@@ -24,8 +24,8 @@ const TextImageSection = ({ reverse = false, isVideo = false }) => {
         <div className="text-container">
           <h2 className="section-title">مستقبل أفضل بخطوات واثقة</h2>
           <p className="section-text">
-            التعليم مش مجرد كتب ودروس، لكنه رحلة ممتعة مليانة اكتشاف وإبداع.
-            هنا كل طفل بيلاقي الدعم والتشجيع علشان يعبّر عن نفسه بطريقته الخاصة ويصنع مستقبله بخطوات واثقة.
+            التعليم مش مجرد كتب ودروس، لكنه رحلة ممتعة مليانة اكتشاف وإبداع
+            هنا كل طفل بيلاقي الدعم والتشجيع علشان يعبّر عن نفسه بطريقته الخاصة ويصنع مستقبله بخطوات واثقة
           </p>
           <button className="section-button" onClick={() => setIsModalOpen(true)}>
             !جاهز
