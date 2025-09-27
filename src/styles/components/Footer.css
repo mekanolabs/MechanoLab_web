@@ -81,3 +81,92 @@
     font-size: 1.5rem !important;
   }
 }
+
+
+/* Yellow App Button */
+.app-button-container {
+  margin-top: 1rem;
+}
+
+.app-button {
+  background-color: #FACC15; /* Tailwind Yellow-400 */
+  color: #1F2937; /* Dark Gray */
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.app-button:hover {
+  background-color: #eab308; /* Darker yellow */
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Box */
+.modal-content {
+  background: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  max-width: 300px;
+  width: 90%;
+  animation: slideUp 0.3s ease;
+}
+
+.qr-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.qr-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1F2937;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #374151;
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+  color: red;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(25px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}

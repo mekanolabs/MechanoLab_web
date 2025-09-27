@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaInstagram, FaFacebook, FaYoutube, FaEnvelope } from 'react-icons/fa';
-import '../styles/components/Footer.css';
 import { RiTiktokLine } from 'react-icons/ri';
+import '../styles/components/Footer.css';
 
 const Footer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <footer className="footer">
       <div className="footer-content">
@@ -31,6 +33,13 @@ const Footer = () => {
             <span className="email-text">mekanolabs@gmail.com</span>
           </div>
         </div>
+
+        {/* Yellow Button */}
+        <div className="app-button-container">
+          <button className="app-button" onClick={() => setIsModalOpen(true)}>
+            حمل التطبيق
+          </button>
+        </div>
       </div>
       
       <div className="copyright">
@@ -38,6 +47,17 @@ const Footer = () => {
           © {new Date().getFullYear()} Mechano Labs. All rights reserved.
         </p>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src="/images/qrcode_mob.png" alt="QR Code" className="qr-image" />
+            <p className="qr-text">امسح للحصول على التطبيق</p>
+            <button className="close-button" onClick={() => setIsModalOpen(false)}>✕</button>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };
