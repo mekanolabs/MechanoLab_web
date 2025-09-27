@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TextImageSection from '../components/TextImageSection';
@@ -11,7 +12,12 @@ import PracticalSection from '../components/practicalSection';
 
 const Home = () => {
   return (
-    <div style={styles.page}>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      style={styles.page}
+    >
       <Navbar />
       <Hero />
       <TextImageSection reverse={false} isVideo={true} />
@@ -21,7 +27,7 @@ const Home = () => {
       <ImageSlider2 />
       <About />
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

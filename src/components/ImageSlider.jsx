@@ -4,7 +4,10 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const ImageSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState('right');
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
   const slides = [
     '/images/1.png',
@@ -24,72 +27,126 @@ const ImageSlider = () => {
     '/images/15.png',
     '/images/16.png',
     '/images/17.jpeg',
-
-
   ];
 
-  const nextSlide = () => {
-    if (isAnimating) return;
+  // Preload all images
+  useEffect(() => {
+    const preloadImages = () => {
+      const promises = slides.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+        });
+      });
 
+      Promise.all(promises)
+        .then(() => {
+          setImagesPreloaded(true);
+        })
+        .catch((error) => {
+          console.error('Error preloading images:', error);
+          setImagesPreloaded(true);
+        });
+    };
+
+    preloadImages();
+  }, []);
+
+  const goToNextSlide = () => {
+    if (isAnimating || !imagesPreloaded) return;
+
+    const newSlide = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+    setDirection('right');
+    setNextSlide(newSlide);
     setIsAnimating(true);
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
 
-    // Reset animation state after transition
-    setTimeout(() => setIsAnimating(false), 500);
+    setTimeout(() => {
+      setCurrentSlide(newSlide);
+      setIsAnimating(false);
+    }, 600);
   };
 
-  const prevSlide = () => {
-    if (isAnimating) return;
+  const goToPrevSlide = () => {
+    if (isAnimating || !imagesPreloaded) return;
 
+    const newSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+    setDirection('left');
+    setNextSlide(newSlide);
     setIsAnimating(true);
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
 
-    // Reset animation state after transition
-    setTimeout(() => setIsAnimating(false), 500);
+    setTimeout(() => {
+      setCurrentSlide(newSlide);
+      setIsAnimating(false);
+    }, 600);
   };
 
   // Auto-slide functionality
   useEffect(() => {
+    if (!imagesPreloaded) return;
+
     const interval = setInterval(() => {
       if (!isAnimating) {
-        nextSlide();
+        goToNextSlide();
       }
-    }, 4000); // Change slide every 4 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
-  }, [currentSlide, isAnimating]);
+  }, [currentSlide, isAnimating, imagesPreloaded]);
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') goToPrevSlide();
+      if (e.key === 'ArrowRight') goToNextSlide();
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isAnimating]);
+  }, [isAnimating, imagesPreloaded]);
+
+  if (!imagesPreloaded) {
+    return (
+      <section className="slider-section">
+        <h2 className="slider-title">فعاليات | Mekano Labs</h2>
+        <div className="slider-container loading">
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+            <p>جاري تحميل الصور...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="slider-section">
-      <h2 className="slider-title">فعاليات | Mekano Labs </h2>
+      <h2 className="slider-title">فعاليات | Mekano Labs</h2>
       <div className="slider-container">
         <div className="slide-container">
+          {/* Current Slide - Always visible in the background */}
           <img
             src={slides[currentSlide]}
             alt={`Slide ${currentSlide + 1}`}
-            className="slide-image"
-            style={{
-              animation: isAnimating ? 'slideIn 0.5s ease-in-out' : 'none'
-            }}
+            className="slide-image current-slide"
           />
 
-          {/* Navigation arrows inside the image container */}
-          <button className="arrow-button prev" onClick={prevSlide}>
+          {/* Next/Previous Slide - Animated during transition */}
+          {isAnimating && (
+            <img
+              src={slides[nextSlide]}
+              alt={`Slide ${nextSlide + 1}`}
+              className={`slide-image animated-slide slide-${direction}`}
+            />
+          )}
+
+          {/* Navigation arrows */}
+          <button className="arrow-button prev" onClick={goToPrevSlide}>
             <FaChevronLeft className="arrow-icon" />
           </button>
 
-          <button className="arrow-button next" onClick={nextSlide}>
+          <button className="arrow-button next" onClick={goToNextSlide}>
             <FaChevronRight className="arrow-icon" />
           </button>
         </div>
@@ -104,29 +161,21 @@ const ImageSlider = () => {
               backgroundColor: index === currentSlide ? '#4F46E5' : '#D1D5DB',
             }}
             onClick={() => {
-              if (!isAnimating && index !== currentSlide) {
+              if (!isAnimating && index !== currentSlide && imagesPreloaded) {
+                const newDirection = index > currentSlide ? 'right' : 'left';
+                setDirection(newDirection);
+                setNextSlide(index);
                 setIsAnimating(true);
-                setCurrentSlide(index);
-                setTimeout(() => setIsAnimating(false), 500);
+
+                setTimeout(() => {
+                  setCurrentSlide(index);
+                  setIsAnimating(false);
+                }, 600);
               }
             }}
           />
         ))}
       </div>
-
-      {/* CSS Animation keyframes */}
-      <style jsx>{`
-        @keyframes slideIn {
-          0% {
-            opacity: 0.7;
-            transform: scale(1.05);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
     </section>
   );
 };
